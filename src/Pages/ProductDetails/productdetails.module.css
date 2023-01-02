@@ -1,0 +1,91 @@
+.section {
+    height: 50%;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+    gap: 16px;
+    height: 80%;
+}
+
+.product-container  div:nth-child(2) {
+    grid-column-end: span 2;
+    display: flex;
+    justify-content: center;
+}
+.product-container  div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.price{
+    padding-bottom: 1rem;
+    font-size: 2rem;
+    border-bottom: 2px solid white;
+}
+
+.info-container {
+    grid-column-end: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.2rem;
+    color: white;
+    border: 2px solid var(--blue);
+}
+
+.info-container-top p {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+.info-container-bottom p {
+    font-size: 0.9rem;
+}
+
+.info-container-bottom {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.buy-container {
+    border: 2px solid var(--blue);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 1rem ;
+    width: 100%;
+}
+
+.buy-container button {
+    border: 2px solid white;
+    background: none;
+    color:  white;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buy-container button img {
+    width: 20px;
+}
+
+.counter {
+    display: flex;
+}
+
+.counter button {
+    width: 10%;
+}
+
+button {
+    cursor: pointer;
+}

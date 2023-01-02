@@ -1,0 +1,22 @@
+section {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.error-cont {
+    width: 40%;
+    height: 50%;
+    border: 2px solid black;
+    color: rgba(96,165,250);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-cont > h1 {
+    font-size: 8rem;
+}
+

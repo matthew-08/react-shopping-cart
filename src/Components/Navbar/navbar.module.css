@@ -1,0 +1,86 @@
+nav {
+    padding: 1rem;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-options li {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.nav-options {
+    color: none ;
+    font-size: 2vw;
+    display: flex;
+    gap: 1rem ;
+}
+
+nav input { 
+    width: 100%;
+    transition: width 300ms ease-in-out;
+    background-color: rgb(255, 255, 255, 0.3);
+    border: none;
+    color: azure;
+    padding: 0.5rem;
+    border-radius: 10px;
+
+}
+
+input::placeholder {
+    color: white;
+}
+
+
+nav .input {
+    display: flex;
+    max-width: 10%;
+    margin-right: 13rem;
+    flex: 1;
+    transition: max-width 300ms ease-in-out;
+    border-radius: 4px;
+}
+
+
+.input:focus-within{
+    max-width: 30%;
+}
+
+.cart{
+    width: 2vw;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.cart img {
+    width: 100%;
+    width: 2vw;
+}
+
+.product-counter {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 0, 0, 0.7);
+    right: -10px;
+    top: -5px;
+    color: white;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.nav-options a:hover {
+    color: rgb(113, 177, 255);
+}

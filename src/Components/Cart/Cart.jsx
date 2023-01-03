@@ -3,11 +3,9 @@ import { motion } from 'framer-motion';
 import styles from './cart.module.css';
 import CartItem from './CartItem/CartItem';
 
-export default function Cart({ closeCart, cartBtn, cartItems }) {
-  const [cartInfo, setCartInfo] = useState({
-    quantity: 0,
-  });
-
+export default function Cart({
+  closeCart, cartBtn, cartItems, cartInfo,
+}) {
   const cart = useRef(null);
   console.log(cartItems);
 
@@ -25,23 +23,6 @@ export default function Cart({ closeCart, cartBtn, cartItems }) {
     document.body.addEventListener('click', checkClick);
     return () => document.body.removeEventListener('click', checkClick);
   }, []);
-
-  useEffect(() => {
-    const calculateTotal = cartItems.reduce((prev, item) => prev + item.price * item.quantity, 0);
-    const calculateQuantity = cartItems.reduce((prev, item) => prev + item.quantity, 0);
-    console.log(calculateTotal);
-    setCartInfo(
-      {
-        ...cartInfo,
-        quantity: calculateQuantity,
-        total: calculateTotal,
-      },
-    );
-  }, [cartItems]);
-
-  useEffect(() => {
-    console.log(cartInfo);
-  }, [cartInfo]);
 
   return (
     <section
@@ -62,18 +43,48 @@ export default function Cart({ closeCart, cartBtn, cartItems }) {
           </h2>
           <button
             type="button"
+            className={styles['clear-button']}
           >
             Clear
 
           </button>
         </div>
-        {cartItems.map((item) => (
-          <CartItem
-            image={item.image}
-            price={item.price}
-            quantity={item.quantity}
-          />
-        ))}
+        <div
+          className={styles['cart-container']}
+        >
+          <div
+            className={styles['items-overflow']}
+          >
+
+            {cartItems.map((item) => (
+              <CartItem
+                img={item.image}
+                price={item.price}
+                quantity={item.quantity}
+                name={item.title}
+                id={item.id}
+                desc={item.description}
+                passRating={item.rating.rate}
+                count={item.rating.count}
+              />
+            ))}
+          </div>
+          <div
+            className={styles['cart-container-bottom']}
+          >
+            <h3>
+              Total:
+              {' '}
+              {cartInfo.total ? `$${cartInfo.total}` : '$0'}
+              {' '}
+            </h3>
+            <button
+              type="button"
+            >
+              Checkout
+            </button>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

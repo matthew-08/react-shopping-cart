@@ -6,30 +6,7 @@ import Store from '../Pages/Store/Store';
 import NotFound from '../Pages/NotFound/NotFound';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 
-export default function AnimatedRoutes({ cart, updateCart }) {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setProducts(json);
-      });
-  }, []);
-  const addToCart = (id) => {
-    if (cart.filter((item) => item.id === id).length > 0) {
-      updateCart(cart.map((item) => {
-        if (item.id === id) {
-          item.quantity++;
-        }
-        return item;
-      }));
-    } else {
-      const item = products.find((i) => i.id === id);
-      updateCart([...cart, { ...item, quantity: 1 }]);
-    }
-    console.log(cart);
-  };
+export default function AnimatedRoutes({ cart, addToCart, products }) {
   const location = useLocation();
   return (
     <AnimatePresence>

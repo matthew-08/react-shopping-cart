@@ -34,6 +34,11 @@
     
 }
 
+.link span {
+    font-size: 3rem;
+    margin: 0;
+}
+
 .link:hover {
     font-family: var(--font-1);
     background-color: rgba(96,165,250, 0.8);

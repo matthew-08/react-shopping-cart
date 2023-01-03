@@ -71,3 +71,28 @@
 .bottom button img {
     width: 17px;
 }
+
+span {
+    position: relative;
+    margin-left: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 100;
+    font-size: 0.8rem;
+}
+
+.rating::before{
+    content: "";
+    background-image: url(/public/star.svg);
+    background-size: 30px 30px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: -25px;
+    top: -8px;
+}
+
+h4{
+    margin-bottom: 2px;
+    font-size: 1.2rem;
+}

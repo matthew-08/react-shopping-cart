@@ -7,8 +7,10 @@ import Cart from './Components/Cart/Cart';
 import AnimatedRoutes from './Components/AnimatedRoutes';
 
 function App() {
-  const [cart, showCart] = useState(false);
+  const [cartAside, showCart] = useState(false);
   const [cartBtn, setCartBtn] = useState('');
+  const [cart, updateCart] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const handleCart = (e) => {
     setCartBtn(e);
@@ -20,9 +22,14 @@ function App() {
       <Navbar
         showCart={handleCart}
       />
-      <AnimatedRoutes />
-      {cart && (
+      <AnimatedRoutes
+        cart={cart}
+        updateCart={updateCart}
+        setProducts={setProducts}
+      />
+      {cartAside && (
       <Cart
+        cartItems={cart}
         closeCart={showCart}
         cartBtn={cartBtn}
       />

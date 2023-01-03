@@ -3,12 +3,21 @@ import { Route, Routes, Link } from 'react-router-dom';
 import styles from './shopproduct.module.css';
 import ProductDetails from '../../../ProductDetails/ProductDetails';
 
-export default function ShopProduct({ id, img, name }) {
-  console.log(id);
+export default function ShopProduct({
+  id, img, name, price, rating, desc, addToCart,
+}) {
+  const passRating = rating.rate;
+  const { count } = rating;
   return (
     <Link
-      to={`/store/${id}`}
+      to={{
+        pathname: `/store/${id}`,
+        state: { img, name },
+      }}
       className={styles.card}
+      state={{
+        img, name, price, desc, passRating, count,
+      }}
     >
       <img src={img} alt="product img" />
       <div
@@ -26,10 +35,25 @@ export default function ShopProduct({ id, img, name }) {
           <div
             className={styles.left}
           >
-            <h4>$800</h4>
-            <span>3.9 | Sold 120</span>
+            <h4>{`$${price}`}</h4>
+            <span
+              className={styles.rating}
+            >
+              {rating.rate}
+              {' '}
+              |
+              {' '}
+              {rating.count}
+            </span>
           </div>
-          <button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addToCart(id);
+            }}
+          >
             <img src="/public/cart.svg" />
             Add
           </button>

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import styles from './productdetails.module.css';
 import RemoveCart from './Removecart/RemoveCart';
 
 export default function ProductDetails() {
   const [removeCart, setRemoveCart] = useState(false);
+  const location = useLocation();
+  const {
+    name, img, desc, price, passRating, count,  
+  } = location.state;
+  console.log(name);
 
   return (
     <main>
@@ -17,38 +23,47 @@ export default function ProductDetails() {
           <div
             className={styles['img-container']}
           >
-            <img src="/public/vite.svg" />
+            <img src={img} alt="product-img" />
           </div>
-          <div>
-            <div
-              className={styles['info-container']}
-            >
-              <div
-                className={styles['info-container-top']}
-              >
-                <h2>Product name</h2>
-                <p>Sold 120 | 3.9 stars</p>
-              </div>
-              <h2
-                className={styles.price}
-              >
-                $130
 
-              </h2>
-              <div
-                className={styles['info-container-bottom']}
-                style={{ padding: 0 }}
-              >
-                <p>Category:</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Rerum praesentium accusamus libero. Magnam ten
-                  etur corporis quo minus cum rem ipsam?
-                </p>
-              </div>
+          <div
+            className={styles['info-container']}
+          >
+            <div
+              className={styles['info-container-top']}
+            >
+              <h2>{name}</h2>
+              <p>
+                Sold
+                {' '}
+                {count}
+                {' '}
+                |
+                {' '}
+                {passRating}
+                {' '}
+                stars
+              </p>
+            </div>
+            <h2
+              className={styles.price}
+            >
+              {`$${price}`}
+
+            </h2>
+            <div
+              className={styles['info-container-bottom']}
+              style={{ padding: 0 }}
+            >
+              <p>Category:</p>
+              <p>
+                {desc}
+              </p>
             </div>
           </div>
-          <div>
+          <div
+            className={styles.border}
+          >
             <div
               className={styles['buy-container']}
             >

@@ -14,4 +14,17 @@
     width: 30%;
     height: 100%;
     overflow: hidden;
+    padding: 2rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.header button {
+    background: none;
+    color: white;
+    padding: 0.25rem;
 }

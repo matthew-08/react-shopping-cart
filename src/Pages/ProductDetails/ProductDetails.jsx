@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import styles from './productdetails.module.css';
 import RemoveCart from './Removecart/RemoveCart';
 
-export default function ProductDetails() {
+export default function ProductDetails({ addToCart, removeFromCart, incrementQuantity }) {
   const [removeCart, setRemoveCart] = useState(false);
   const location = useLocation();
+  console.log(location);
   const {
-    name, img, desc, price, passRating, count,  
+    name, img, desc, price, passRating, count, id,
   } = location.state;
   console.log(name);
 
@@ -72,6 +73,10 @@ export default function ProductDetails() {
                 {removeCart ? (
                   <RemoveCart
                     remove={setRemoveCart}
+                    removeFromCart={removeFromCart}
+                    id={id}
+                    incrementQuantity={incrementQuantity}
+
                   />
                 ) : (
                   <motion.button
@@ -80,7 +85,10 @@ export default function ProductDetails() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                     type="button"
-                    onClick={() => setRemoveCart(true)}
+                    onClick={() => {
+                      setRemoveCart(true);
+                      addToCart(id);
+                    }}
                   >
                     <img src="/public/cart.svg" alt="cart" />
                     Add to Cart

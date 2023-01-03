@@ -6,7 +6,9 @@ import Store from '../Pages/Store/Store';
 import NotFound from '../Pages/NotFound/NotFound';
 import ProductDetails from '../Pages/ProductDetails/ProductDetails';
 
-export default function AnimatedRoutes({ cart, addToCart, products }) {
+export default function AnimatedRoutes({
+  cart, addToCart, products, removeFromCart, incrementQuantity,
+}) {
   const location = useLocation();
   return (
     <AnimatePresence>
@@ -23,7 +25,17 @@ export default function AnimatedRoutes({ cart, addToCart, products }) {
               />
 )}
           />
-          <Route path=":id" element={<ProductDetails />} />
+          <Route
+            path=":id"
+            element={(
+              <ProductDetails
+                removeFromCart={removeFromCart}
+                addToCart={addToCart}
+                incrementQuantity={incrementQuantity}
+
+              />
+)}
+          />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

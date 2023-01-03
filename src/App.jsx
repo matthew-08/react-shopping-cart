@@ -10,7 +10,6 @@ function App() {
   const [cartAside, showCart] = useState(false);
   const [cartBtn, setCartBtn] = useState('');
   const [cart, updateCart] = useState([]);
-  const [cartBtnCounter, setCartBtnCounter] = useState(0);
   const [cartItems, setCartItems] = useState([]);
 
   const [products, setProducts] = useState([]);
@@ -28,12 +27,13 @@ function App() {
   };
   useEffect(() => {
     const calculateTotal = cartItems.reduce((prev, item) => prev + item.price * item.quantity, 0);
+    const roundedTotal = Math.floor((calculateTotal * 100) / 100);
     const calculateQuantity = cartItems.reduce((prev, item) => prev + item.quantity, 0);
     updateCart(
       {
         ...cart,
         quantity: calculateQuantity,
-        total: calculateTotal,
+        total: roundedTotal,
       },
     );
   }, [cartItems]);
@@ -57,24 +57,41 @@ function App() {
     console.log(cart);
   }, [cartItems]);
 
+  const removeFromCart = (id) => {
+    setCartItems(
+      cartItems.filter((item) => item.id !== id),
+    );
+  };
+
+  const incrementQuantity = (id) => {
+    setCartItems(cartItems.map((item) => {
+      if (item.id === id) {
+        item.quantity++;
+      }
+      return item;
+    }));
+  };
+
   return (
     <Router>
       <Navbar
         showCart={handleCart}
-        cartBtnCounter={cartBtnCounter}
+        counter={cart.quantity}
       />
       <AnimatedRoutes
         cartInfo={cart}
         addToCart={addToCart}
         setProducts={setProducts}
         products={products}
+        removeFromCart={removeFromCart}
+        incrementQuantity={incrementQuantity}
       />
       {cartAside && (
       <Cart
-        cartItems={cart}
+        cartItems={cartItems}
         closeCart={showCart}
+        cartInfo={cart}
         cartBtn={cartBtn}
-        setCartBtnCounter={setCartBtnCounter}
       />
       )}
     </Router>

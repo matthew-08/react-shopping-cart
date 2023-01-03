@@ -3,7 +3,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import styles from './navbar.module.css';
 import cart from './img/cart.svg';
 
-export default function Navbar({ showCart, cartBtnCounter }) {
+export default function Navbar({ showCart, cartBtnCounter, counter }) {
   const cartBtn = useRef(null);
 
   return (
@@ -40,7 +40,7 @@ export default function Navbar({ showCart, cartBtnCounter }) {
           <div
             className={styles['product-counter']}
           >
-            {cartBtnCounter}
+            {counter}
           </div>
           <img src={cart} alt="cart-logo" />
         </button>

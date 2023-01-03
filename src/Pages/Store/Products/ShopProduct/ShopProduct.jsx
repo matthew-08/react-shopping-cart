@@ -16,7 +16,7 @@ export default function ShopProduct({
       }}
       className={styles.card}
       state={{
-        img, name, price, desc, passRating, count,
+        img, name, price, desc, passRating, count, id,
       }}
     >
       <img src={img} alt="product img" />
